@@ -16,3 +16,9 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+
+@api.route('/getfilm', methods=["GET"])
+def get_film(id):
+
+    return "invalid Method ", 400
