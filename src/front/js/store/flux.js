@@ -2,8 +2,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			APIKey: "9b4bb57773f25b3b42665ef8a193133c",
-			film: ""
+			APIKey: "5bfd2a70",
+			film: {}
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -38,15 +38,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ demo: demo });
 			},
 			get_film: () => {
-				fetch(process.env.BACKEND_URL + "/api/getfilm/" + APIKey)
+
+				var requestOptions = {
+					method: 'GET',
+					redirect: 'follow'
+				};
+
+
+				fetch("https://www.omdbapi.com/?t=thor&APIkey=5bfd2a70", requestOptions)
 					.then((resp) => {
 						if (resp.ok) {
-							setStore({ film: resp });
-							return resp.json();
+							return resp.json()
 						} else {
 							alert("ha habido un problema intentalo de nuevo mas tarde");
-							return;
 						}
+					})
+					.then((data) => {
+						setStore({ film: data })
 					})
 			},
 

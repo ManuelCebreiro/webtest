@@ -4,7 +4,7 @@ import Body from "./body";
 import "../../styles/home.css";
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
+	// const { store, actions } = useContext(Context);
 
 	return (
 		<div className="text-center">
