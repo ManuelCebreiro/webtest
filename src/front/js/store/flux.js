@@ -3,7 +3,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			message: null,
 			APIKey: "5bfd2a70",
-			film: {}
+			film: {},
+			listFilm: [],
+
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -37,15 +39,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
+			datospeliculasbuscador: (e) => {
+
+				setStore({ listFilm: [...getStore().listFilm, e] })
+
+				console.log(e)
+			},
 			get_film: () => {
+				let variable = getStore().listFilm
+				const nombrepeli = variable[variable.length - 1]
 
 				var requestOptions = {
 					method: 'GET',
 					redirect: 'follow'
 				};
-
-
-				fetch("https://www.omdbapi.com/?t=thor&APIkey=5bfd2a70", requestOptions)
+				fetch("https://www.omdbapi.com/?t=" + nombrepeli + "&APIkey=5bfd2a70", requestOptions)
 					.then((resp) => {
 						if (resp.ok) {
 							return resp.json()
@@ -56,6 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then((data) => {
 						setStore({ film: data })
 					})
+				console.log(nombrepeli)
 			},
 
 		}

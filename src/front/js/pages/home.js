@@ -8,8 +8,7 @@ export const Home = () => {
 
 	return (
 		<div className="text-center">
-			<div clasName="row">
-				<h1>Bienvenido a decinetime tour</h1></div>
+
 			<Body />
 			<div clasName="row"></div>
 		</div>
