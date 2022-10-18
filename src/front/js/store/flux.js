@@ -43,11 +43,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				setStore({ listFilm: [...getStore().listFilm, e] })
 
-				console.log(e)
 			},
 			get_film: () => {
 				let variable = getStore().listFilm
-				const nombrepeli = variable[variable.length - 1]
+				const nombrepeli = variable[variable.length - 1]               //listFilm es una lista de peliculas y en esta variable lo que estoy haciendo es llamar a la ultima posicion que es la que quiero que aparezca
 
 				var requestOptions = {
 					method: 'GET',
@@ -65,6 +64,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 						setStore({ film: data })
 					})
 				console.log(nombrepeli)
+			},
+			get_film_random: () => {
+				var min = 100001;
+				var max = 999992;
+
+				var idrandom = Math.floor(Math.random() * (max - min + 1) + min);
+				console.log(idrandom)
+				var requestOptions = {
+					method: 'GET',
+					redirect: 'follow'
+				};
+				fetch("https://www.omdbapi.com/?i=tt" + idrandom + "&APIkey=5bfd2a70", requestOptions)
+					.then((resp) => {
+						if (resp.ok) {
+							return resp.json()
+						} else {
+							alert("ha habido un problema intentalo de nuevo mas tarde");
+						}
+					})
+					.then((data) => {
+						setStore({ film: data })
+					})
 			},
 
 		}

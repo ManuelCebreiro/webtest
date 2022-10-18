@@ -46,16 +46,15 @@ const Body = () => {
 
                                         if (e.key === "Enter") {
                                             setinputValue("")
-                                            actions.datospeliculasbuscador(e.target.value)
+                                            actions.datospeliculasbuscador(inputValue)
                                             actions.get_film()
                                         }
-                                        console.log(listfilms)
                                     }}
 
                                 >
 
                                 </input>
-                                <button className="btn btn-dark" onClick={() => actions.get_film()}>NEXT</button>
+                                <button className="btn btn-dark" onClick={() => actions.get_film_random()}>NEXT</button>
                             </div>
                         </div>
                         <div className="col-4">
