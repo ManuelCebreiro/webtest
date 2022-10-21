@@ -5,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			APIKey: "5bfd2a70",
 			film: {},
 			listFilm: [],
+			validacion: true
 
 		},
 		actions: {
@@ -67,7 +68,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			get_film_random: () => {
 				var min = 100001;
-				var max = 999992;
+				var max = 999999;
 
 				var idrandom = Math.floor(Math.random() * (max - min + 1) + min);
 				console.log(idrandom)
@@ -78,7 +79,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch("https://www.omdbapi.com/?i=tt" + idrandom + "&APIkey=5bfd2a70", requestOptions)
 					.then((resp) => {
 						if (resp.ok) {
+							console.log(resp)
 							return resp.json()
+						} else if (resp.redirected == false) {
+
 						} else {
 							alert("ha habido un problema intentalo de nuevo mas tarde");
 						}

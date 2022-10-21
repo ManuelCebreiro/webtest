@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/body.css"
 
@@ -11,6 +11,13 @@ const Body = () => {
     const [listfilms, setListFilms] = useState([]);
     const [inputValue, setinputValue] = useState();
 
+    console.log(film.Response)
+
+    useEffect(() => {
+        if (film.Response == false) {
+            // actions.get_film_random()
+        }
+    })
 
     return (
         <div className="row">
@@ -54,7 +61,8 @@ const Body = () => {
                                 >
 
                                 </input>
-                                <button className="btn btn-dark" onClick={() => actions.get_film_random()}>NEXT</button>
+                                <button className="btn btn-dark" onClick={() => actions.get_film_random()}>NEXT
+                                </button>
                             </div>
                         </div>
                         <div className="col-4">
